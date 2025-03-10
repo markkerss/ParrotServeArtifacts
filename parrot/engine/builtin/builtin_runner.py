@@ -106,7 +106,7 @@ class BuiltinRunner:
                     first_sampling_states.append(last_hidden_state)
                     first_sampling_config.append(job.sampling_config)
                     first_sampling_jobs.append(job)
-                    job.context.last_hidden_state = None
+                job.context.last_hidden_state = None
 
             job.context.token_kv_block_ids.extend(allocated_blocks_id)
 

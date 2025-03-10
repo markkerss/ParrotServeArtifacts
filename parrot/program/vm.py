@@ -249,7 +249,7 @@ class VirtualMachine:
 
         self.register_function_handler(func)
 
-        return func
+        return func                                                                                                                                                                    
 
     def import_function(
         self,

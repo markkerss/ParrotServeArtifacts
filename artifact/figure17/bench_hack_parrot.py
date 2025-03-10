@@ -131,11 +131,13 @@ async def execute(vm: P.VirtualMachine, workloads, cache_prefix):
         await vm.submit_batch()
 
         # Wait for the round to finish.
-        await asyncio.gather(*[output.aget() for output in layer_outputs])
+        round_results = await asyncio.gather(*[output.aget() for output in layer_outputs])
 
-        # for j, info in enumerate(round_info):
-        #     string = outputs[i][j].get()
-        #     print("Output: ", string)
+        for j, info in enumerate(round_info):
+            string = round_results[j]
+            if len(string) > 0:
+                with open("benchmark_parrot_output.txt", "a") as output_file:
+                    output_file.write(str(string) + "\n")
 
     # inputs[0][0].set(workloads[0][0]["diverged_prompt"])
     # string = await outputs[0][0].aget()
